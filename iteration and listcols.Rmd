@@ -1,0 +1,123 @@
+---
+title: "iteration_and_listcols"
+output: github_document
+date: "2022-11-05"
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(rvest)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+
+## lists
+
+```{r}
+vec_numeric = 5:8
+vec_logical = c(T,F,T,T)
+```
+
+Let's look at a list
+
+```{r}
+l = list(
+  vec_numeric = 5:8,
+  mat = matrix(1:8,2,4),
+  vec_logical = c(T,F),
+  summary = summary(rnorm(1000))
+)
+```
+
+Accessing list items
+
+```{r}
+l$vec_numeric
+
+l[[3]]
+
+l[["mat"]]
+```
+
+## loops
+
+let's write a `for `loop to take the mean and SD of four samples from normal distribution. 
+
+```{r}
+list_norm = 
+  list(
+    a = rnorm(20,5,4),
+    b = rnorm(20,-12,3),
+    c = rnorm(20,17,.4),
+    d = rnorm(20,100,1)
+  )
+
+```
+
+here is my function.
+
+```{r}
+mean_and_sd = function(x){
+
+  if(!is.numeric(x)){
+    stop("Z scores only work for numbers")
+  }
+  
+  if(length(x)<3){
+    stop("Z scores really only work if you have thee or more numbers")
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
+  
+  tibble(
+    mean = mean_x,
+    sd = sd_x
+  )
+}
+```
+
+let's try to make it work.
+
+```{r}
+mean_and_sd(list_norm[[1]])
+mean_and_sd(list_norm[[2]])
+mean_and_sd(list_norm[[3]])
+mean_and_sd(list_norm[[4]])
+```
+
+let's a for loop instead.
+
+```{r}
+output= vector("list", length = 4)
+
+for (i in 1:4){
+  output[[i]] = mean_and_sd(list_norm[[i]])
+}
+
+output
+```
+
+## can we map?
+
+we can map!
+
+```{r}
+
+```
+
