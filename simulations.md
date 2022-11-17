@@ -28,7 +28,7 @@ sim_mean_sd(n_obs = 30)
     ## # A tibble: 1 × 2
     ##   mu_hat sigma_hat
     ##    <dbl>     <dbl>
-    ## 1   6.43      2.90
+    ## 1   7.15      5.35
 
 How can we use this now
 
@@ -110,10 +110,10 @@ sim_results_df %>%
     ## # A tibble: 4 × 2
     ##   sample_size emp_st_err
     ##   <fct>            <dbl>
-    ## 1 N = 30           0.740
-    ## 2 N = 60           0.486
-    ## 3 N = 120          0.362
-    ## 4 N = 240          0.250
+    ## 1 N = 30           0.737
+    ## 2 N = 60           0.501
+    ## 3 N = 120          0.359
+    ## 4 N = 240          0.255
 
 ## let’s see two inputs…
 
